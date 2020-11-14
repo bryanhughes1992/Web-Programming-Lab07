@@ -25,24 +25,47 @@ function pageReady() {
 
 	//Instantiating a new Date() and storing it inside 'dateOne'
 	var dateOne = new Date();
-	//Setting a todaysDate variable to now in a string form
-	todaysDate = dateOne.toDateString();
 	//Setting the innerHTML to the 'todaysDate' variable
-	dateSpan.innerHTML = todaysDate;
+	dateSpan.innerHTML = dateOne;
 
 	//Instantiating a new Date() and initializing it to 11:59:59:59PM EST
-	var dateTwo = new Date(2020, 12, 15, 23, 59, 59, 59);
+	var dueDate = new Date(2020, 11, 15, 23, 59, 59, 59);
 	//Setting the innerHTML of the 'finalData' span to 'dateTwo' data
-	spanFinalData.innerHTML = dateTwo;
+	spanFinalData.innerHTML = dueDate;
 
-	/*******************************************************
-		CONVERT TO UTC AND SUBTRACT TO GET TIME DIFFERENCE
-	********************************************************/
+	/**********************************************************************
+		convert today and due date to milliseconds, subtract today from
+		the due date. convert the difference to days. Set the appropriate
+		html element to the value of this amount of days.
+	***********************************************************************/
 
-	var daysUntilDue =
+	// A value that represents today's date in
+	var todaysDateMilliseconds = dateOne.getTime();
+
+	// A value that represents the due date in milliseconds
+	var dueDateMilliseconds = dueDate.getTime();
+
+	// The difference between the due date and today, represented in milliseconds
+	var amountOfTimeMilliseconds = dueDateMilliseconds - todaysDateMilliseconds;
+
+	// Converting the above variable to days
+	var amountOfTimeDays = amountOfTimeMilliseconds/86400000;
+	//Setting the dueData span to the 'amountOfTimeDays' value;
+	spanDueData.innerHTML = amountOfTimeDays;
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
-
-
 
 
 	//CONVERT TIME DIFFERENCE TO WHOLE NUMBER OF DAYS
